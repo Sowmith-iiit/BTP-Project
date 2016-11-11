@@ -1,23 +1,81 @@
-<html>
-<script src="https://www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
-<script src="https://www.gstatic.com/firebasejs/3.5.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/3.5.2/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/3.5.2/firebase-database.js"></script>
-<script src="https://www.gstatic.com/firebasejs/3.5.2/firebase-messaging.js"></script>
-<script>
-  var firebase = require("firebase/app");
-  require("firebase/auth");
-  require("firebase/database");
+<!doctype html>
+<head>
+  <meta charset="utf-8">
 
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyDsIr7GkFS0u6lLEt0weXPAtUDEvjDP3sM",
-    authDomain: "cloud-shopping-8d3f7.firebaseapp.com",
-    databaseURL: "https://cloud-shopping-8d3f7.firebaseio.com",
-    storageBucket: "cloud-shopping-8d3f7.appspot.com",
-    messagingSenderId: "482630741220"
-  };
-  firebase.initializeApp(config);
-</script>
-Hello World
+  <title>My Parse App</title>
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-latest.js"></script>
+</head>
+
+<body>
+  
+  <div id="main">
+    <h1>You're ready to use Parse!</h1>
+
+    <p>Read the documentation and start building your JavaScript app:</p>
+
+    <ul>
+      <li><a href="https://www.parse.com/docs/js_guide">Parse JavaScript Guide</a></li>
+      <li><a href="https://www.parse.com/docs/js">Parse JavaScript API Documentation</a></li>
+    </ul>
+
+    <div style="display:none" class="error">
+      Looks like there was a problem saving the test object. Make sure you've set your application ID and javascript key correctly in the call to <code>Parse.initialize</code> in this file.
+    </div>
+
+    <div style="display:none" class="success">
+      <p>We've also just created your first object using the following code:</p>
+      
+        <code>
+          var TestObject = Parse.Object.extend("TestObject");<br/>
+          var testObject = new TestObject();<br/>
+          testObject.save({foo: "bar"});
+        </code>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    /*data = ["1,3.75GB,25.55,Google,United States","2,7.5GB,25.55,Google,United States","4,15GB,25.55,Google,United States","8,30GB,25.55,Google,United States","16,60GB,25.55,Google,United States","32,120GB,817.60,Google,United States","2,13GB,64.39,Google,United States","4,26GB,128.78,Google,United States","8,52GB,257.56,Google,United States","16,104GB,515.12,Google,United States","32,208GB,1030.24,Google,United States","2,1.80GB,38.84,Google,United States","4,3.60GB,77.68,Google,United States","8,7.20GB,155.55,Google,United States","16,14.40GB,310.72,Google,United States","32,28.80GB,621.44,Google,United States","1,3.75GB,33.88,Google,Asia","2,7.5GB,67.76,Google,Asia","4,15GB,135.52,Google,Asia","8,30GB,271.04,Google,Asia","16,60GB,542.08,Google,Asia","32,120GB,1084.16,Google,Asia","2,7.5GB,84.26,Google,Asia","4,15GB,168.52,Google,Asia","8,30GB,337.04,Google,Asia","16,60GB,674.08,Google,Asia","32,120GB,1348.16,Google,Asia","2,1.80GB,50.59,Google,Asia","4,3.60GB,101.18,Google,Asia","8,7.20GB,202.36,Google,Asia","16,14.40GB,404.72,Google,Asia","32,28.80GB,809.44,Google,Asia","2,4,0.68,Amazon,United States","2,8,0.136,Amazon,United States","4,16,0.279,Amazon,United States","8,32,0.559,Amazon,United States","16,64,1.17,Amazon,United States","40,160,2.793,Amazon,United States","64,256,4.469,Amazon,United States","8,15,0.702,Amazon,United States","32,60,2.808,Amazon,United States","2,15,0.185,Amazon,United States","4,30.5,0.371,Amazon,United States","8,61,0.741,Amazon,United States","16,122,1.482,Amazon,United States","32,244,2.964,Amazon,United States","2,4,0.076,Amazon,Asia","2,8,0.169,Amazon,Asia","4,16,0.337,Amazon,Asia","8,32,0.675,Amazon,Asia","16,64,1.350,Amazon,Asia","40,160,3.375,Amazon,Asia","64,256,5.4,Amazon,Asia","2,3.75,0.137,Amazon,Asia","4,7.5,0.275,Amazon,Asia","8,15,0.549,Amazon,Asia","16,30,1.097,Amazon,Asia","36,60,2.195,Amazon,Asia","2,15,0.190,Amazon,Asia","4,30.5,0.379,Amazon,Asia","8,61,0.758,Amazon,Asia","16,122,1.516,Amazon,Asia","32,244,3.302,Amazon,Asia","1,1.75,0.027,Microsoft,United States","2,3.50,0.078,Microsoft,United States","4,7.00,0.204,Microsoft,United States","8,14.00,0.408,Microsoft,United States","1,3.50,0.068,Microsoft,United States","2,7.00,0.136,Microsoft,United States","4,14.00,0.272,Microsoft,United States","8,28.00,0.544,Microsoft,United States","16,56.00,1.087,Microsoft,United States","1,2.00,0.064,Microsoft,United States","2,4.00,0.127,Microsoft,United States","4,8.00,0.254,Microsoft,United States","8,16.00,0.508,Microsoft,United States","16,32,1.016,Microsoft,United States","2,14.00,0.19,Microsoft,United States","4,28.00,0.379,Microsoft,United States","8,56.00,0.759,Microsoft,United States","16,112.00,1.518,Microsoft,United States","20,140.00,1.897,Microsoft,United States","1,1.75,0.018,Microsoft,Asia","2,3.50,0.038,Microsoft,Asia","4,7.00,0.232,Microsoft,Asia","8,14.00,0.464,Microsoft,Asia","1,2.00,0.069,Microsoft,Asia","2,4.00,0.137,Microsoft,Asia","4,8.00,0.275,Microsoft,Asia","8,16.00,0.549,Microsoft,Asia","16,32.00,1.097,Microsoft,Asia","2,14.00,0.19,Microsoft,Asia","4,28.00,0.379,Microsoft,Asia","8,56.00,0.758,Microsoft,Asia","16,112.00,1.516,Microsoft,Asia","20,140.00,1.895,Microsoft,Asia","1,1,0.032,Rackspace,United States","2,2,0.064,Rackspace,United States ","4,4,0.128,Rackspace,United States","8,8,0.256,Rackspace,United States ","2,3.75,0.08,Rackspace,United States","4,7.5,0.16,Rackspace,United States","8,15,0.32,Rackspace,United States","16,30,0.64,Rackspace,United States","32,60,1.28,Rackspace,United States","2,15,0.18,Rackspace,United States","4,30,0.36,Rackspace,United States","8,60,0.72,Rackspace,United States","16,120,1.44,Rackspace,United States","32,240,2.88,Rackspace,United State"];
+    
+    Parse.initialize("EShhK5nMbdUiAKX5pyMK22PiERkfUGr2meXSUkU4", "d1L2P1Pe1oR3h7AXjt2M1Dhn7bdB9deKpmLd9fU9");
+    
+    var size = data.length;
+
+    var step;
+    for(step = 0; step < size; step++){
+      var el = data[step];
+      var list = el.split(",");
+
+      var TestObject = Parse.Object.extend("Data");
+      var testObject = new TestObject();
+      
+      testObject.set("CPUS",parseInt(list[0]));
+      testObject.set("Memory",parseFloat(list[1]));
+      testObject.set("Price",parseFloat(list[2]));
+      testObject.set("Service",list[3]);
+      testObject.set("Location",list[4]);
+      testObject.save(null, {
+        success: function(gameScore) {
+          // Execute any logic that should take place after the object is saved.
+          console.log('New object created with objectId: ' + gameScore.id);
+        },
+        error: function(gameScore, error) {
+          // Execute any logic that should take place if the save fails.
+          // error is a Parse.Error with an error code and message.
+          console.log('Failed to create new object, with error code: ' + error.message);
+        }
+      });
+      */
+      
+
+      }
+
+    
+  </script>
+</body>
+
 </html>
